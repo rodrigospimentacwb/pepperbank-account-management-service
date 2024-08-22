@@ -26,7 +26,8 @@ Para executar o projeto, siga os passos abaixo:
    Antes de iniciar o projeto, você precisa configurar as variáveis de ambiente. Execute o script `setDevEnvVars.sh`[setDevEnvVars](setDevEnvVars) para carregar as variáveis do arquivo `.env`:
 
    ```bash
-   ./setDevEnvVars.sh
+   $ chmod +x setDevEnvVars
+   $ source ./setDevEnvVars.sh
    ```
    
    **Nota: Este arquivo .env não esta versionado.** 
