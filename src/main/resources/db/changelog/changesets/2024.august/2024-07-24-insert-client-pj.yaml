@@ -1,0 +1,64 @@
+databaseChangeLog:
+  - changeSet:
+      id: 2
+      author: rodrigo.pimenta
+      comment: "Inserção da empresa 'Empresa ABC Ltda' com CNPJ na tabela client."
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sqlCheck:
+              expectedResult: 0
+              sql: >
+                SELECT COUNT(*) FROM client WHERE cpf_cnpj = '18290490000173'
+      changes:
+        - insert:
+            tableName: client
+            columns:
+              - column:
+                  name: id
+                  value: 2
+              - column:
+                  name: created_on
+                  value: now
+              - column:
+                  name: updated_on
+                  value: now
+              - column:
+                  name: name
+                  value: 'Empresa ABC Ltda'
+              - column:
+                  name: social_name
+                  value: 'Empresa ABC'
+              - column:
+                  name: trade_name
+                  value: 'ABC Ltda'
+              - column:
+                  name: cpf_cnpj
+                  value: '18290490000173'
+              - column:
+                  name: email
+                  value: 'contato@empresaabc.com.br'
+              - column:
+                  name: postal_code
+                  value: '80000000'
+              - column:
+                  name: address
+                  value: '456 Business Ave'
+              - column:
+                  name: city
+                  value: 'Business City'
+              - column:
+                  name: state
+                  value: 'BC'
+              - column:
+                  name: property_number
+                  value: '100'
+              - column:
+                  name: complement
+                  value: 'Suite 200'
+              - column:
+                  name: phone1
+                  value: '0987654321'
+              - column:
+                  name: phone2
+                  value: '1122334455'
