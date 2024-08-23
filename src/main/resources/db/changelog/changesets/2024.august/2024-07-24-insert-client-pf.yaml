@@ -1,0 +1,64 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: rodrigo.pimenta
+      comment: "Inserção do cliente fictício 'John Doo' na tabela client."
+      preConditions:
+        - onFail: MARK_RAN
+        - not:
+            sqlCheck:
+              expectedResult: 0
+              sql: >
+                SELECT COUNT(*) FROM client WHERE cpf_cnpj = '12345678900'
+      changes:
+        - insert:
+            tableName: client
+            columns:
+              - column:
+                  name: id
+                  value: 1
+              - column:
+                  name: created_on
+                  value: now
+              - column:
+                  name: updated_on
+                  value: now
+              - column:
+                  name: name
+                  value: 'John Doo'
+              - column:
+                  name: social_name
+                  value: null
+              - column:
+                  name: trade_name
+                  value: null
+              - column:
+                  name: cpf_cnpj
+                  value: '12345678900'
+              - column:
+                  name: email
+                  value: 'john.doo@example.com'
+              - column:
+                  name: postal_code
+                  value: '12345678'
+              - column:
+                  name: address
+                  value: '123 Main St'
+              - column:
+                  name: city
+                  value: 'Sample City'
+              - column:
+                  name: state
+                  value: 'SC'
+              - column:
+                  name: property_number
+                  value: null
+              - column:
+                  name: complement
+                  value: null
+              - column:
+                  name: phone1
+                  value: '1234567890'
+              - column:
+                  name: phone2
+                  value: null
