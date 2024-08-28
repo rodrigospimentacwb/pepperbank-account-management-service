@@ -1,15 +1,13 @@
 databaseChangeLog:
   - changeSet:
-      id: 2
+      id: 3
       author: rodrigo.pimenta
       comment: "Inserção da empresa 'Empresa ABC Ltda' com CNPJ na tabela client."
       preConditions:
         - onFail: MARK_RAN
-        - not:
-            sqlCheck:
-              expectedResult: 0
-              sql: >
-                SELECT COUNT(*) FROM client WHERE cpf_cnpj = '18290490000173'
+        - sqlCheck:
+            expectedResult: 0
+            sql: SELECT COUNT(*) FROM client WHERE cpf_cnpj = '18290490000173'
       changes:
         - insert:
             tableName: client
@@ -26,9 +24,6 @@ databaseChangeLog:
               - column:
                   name: name
                   value: 'Empresa ABC Ltda'
-              - column:
-                  name: social_name
-                  value: 'Empresa ABC'
               - column:
                   name: trade_name
                   value: 'ABC Ltda'
