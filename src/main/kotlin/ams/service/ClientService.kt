@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 class ClientService(val repository: ClientRepository) {
 
     fun getAllClients(): List<Client> {
-        return repository.findAll().takeUnless { it.isEmpty() } ?: throw ClientNotFoundException("No clients found")
+        return repository.findAllByOrderByIdAsc().takeUnless { it.isEmpty() } ?: throw ClientNotFoundException("No clients found")
     }
 
     fun getClientById(id: Long): Client {
