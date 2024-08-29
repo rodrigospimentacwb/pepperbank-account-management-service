@@ -5,7 +5,7 @@ import jakarta.persistence.Table
 
 @Entity
 @Table(name = "client")
-class ClientEntity(
+class Client(
     var name: String,
     var socialName: String?,
     var tradeName: String?,
@@ -24,7 +24,6 @@ class ClientEntity(
     fun validate() {
         require(name.isNotBlank()) { "Name cannot be blank" }
         require(cpfCnpj.isNotBlank()) { "CPF/CNPJ cannot be blank" }
-        require(isValidCpfCnpj(cpfCnpj)) { "Invalid CPF/CNPJ" }
         require(email.isNotBlank()) { "Email cannot be blank" }
         require(postalCode.isNotBlank()) { "Postal code cannot be blank" }
         require(address.isNotBlank()) { "Address cannot be blank" }
@@ -32,12 +31,5 @@ class ClientEntity(
         require(state.isNotBlank()) { "State cannot be blank" }
         require(phone1.isNotBlank()) { "Phone1 cannot be blank" }
 
-    }
-
-    private fun isValidCpfCnpj(cpfCnpj: String): Boolean {
-        val cpfRegex = Regex("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")
-        val cnpjRegex = Regex("\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}")
-
-        return cpfRegex.matches(cpfCnpj) || cnpjRegex.matches(cpfCnpj)
     }
 }
