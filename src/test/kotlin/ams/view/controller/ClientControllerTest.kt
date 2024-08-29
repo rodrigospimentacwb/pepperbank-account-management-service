@@ -30,7 +30,7 @@ class ClientControllerTest() {
         `when`(clientFacade.getAllCustomers()).thenReturn(clients)
 
         // Act & Assert
-        mockMvc.perform(get("/api/v1/customers")
+        mockMvc.perform(get("/api/v1/clients")
             .accept(MediaType.APPLICATION_JSON))
             .andDo(print())
             .andExpect(status().isOk)
@@ -49,7 +49,7 @@ class ClientControllerTest() {
         `when`(clientFacade.getAllCustomers()).thenThrow(ClientNotFoundException("No clients found"))
 
         // Act & Assert
-        mockMvc.perform(get("/api/v1/customers")
+        mockMvc.perform(get("/api/v1/clients")
             .accept(MediaType.APPLICATION_JSON))
             .andDo(print())
             .andExpect(status().isNotFound)

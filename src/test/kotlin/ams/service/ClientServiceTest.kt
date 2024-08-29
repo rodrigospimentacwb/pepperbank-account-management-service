@@ -27,7 +27,7 @@ class ClientServiceTest() {
     fun `should return all customers`() {
         // Given
         val clients = TestFixtures.createTestDataBuilderForClientList()
-        `when`(repository.findAll()).thenReturn(clients)
+        `when`(repository.findAllByOrderByIdAsc()).thenReturn(clients)
 
         // When
         val result = service.getAllClients()
@@ -35,13 +35,15 @@ class ClientServiceTest() {
         // Then
         assert(result == clients)
         assertEquals(TestFixtures.VALID_ID, clients[0].id)
+        assertEquals(TestFixtures.VALID_ID + 1, clients[1].id)
+        assertEquals(TestFixtures.VALID_ID + 2, clients[2].id)
         assertEquals(3, clients.size)
     }
 
     @Test
     fun `should return empty list`() {
         // Given
-        `when`(repository.findAll()).thenReturn(emptyList())
+        `when`(repository.findAllByOrderByIdAsc()).thenReturn(emptyList())
 
         // When
         val exception = assertThrows<ClientNotFoundException> {
@@ -79,4 +81,5 @@ class ClientServiceTest() {
         // Then
         assertEquals("Client with id 10 not found", exception.message)
     }
+
 }
